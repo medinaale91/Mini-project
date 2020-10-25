@@ -41,6 +41,100 @@ def update_gaps(serie, hits, character):
             hits[i] = True
     print_gaps(serie, hits)
     
+def print_hangman(fails_count):
+    if fails_count == 1:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    
+            |     
+            |     
+            |
+            |
+            '''
+        )
+    if fails_count == 2:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    /
+            |     
+            |     
+            |
+            |
+            '''
+        )
+    if fails_count == 3:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    /|
+            |     
+            |     
+            |
+            |
+            '''
+        )
+    if fails_count == 4:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    /|\\
+            |     
+            |     
+            |
+            |
+            '''
+        )
+    if fails_count == 5:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    /|\\
+            |     |
+            |     
+            |
+            |
+            '''
+        )
+    if fails_count == 6:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    /|\\
+            |     |
+            |     /
+            |
+            |
+            '''
+        )
+    if fails_count == 7:
+        print(
+            '''
+            ______
+            |	  |
+            |     O
+            |    /|\\
+            |     |
+            |     /\\
+            |
+            |
+            '''
+        )
+
+
 def game():
     greetings()
     serie = choose_serie()
@@ -50,4 +144,4 @@ def game():
         character = ask_character()
         update_gaps(serie, word_hits, character)
 
-game()
+print_hangman(9)
