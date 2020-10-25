@@ -15,15 +15,39 @@ def ask_character():
         character = input("Only letters allowed: ")
     return character.upper()
 
-def print_gaps(word):
+def print_gaps(serie, hits):
     gaps = ""
-    for i in word:
-        if i != " ":
+    for i in range(len(serie)):
+        if serie[i] != " " and hits[i] == False:
             gaps += "_ "
-        elif i == " ":
+        elif serie[i] == " ":
             gaps += "   "
+        else:
+            gaps += serie[i]
     print(gaps)
 
-serie = choose_serie()
-print(serie)
-print_gaps(serie)
+def generate_word_hits(str):
+    hits = []
+    for i in str:
+        if i == " ":
+            hits.append(True)
+        else:
+            hits.append(False)
+    return hits
+
+def update_gaps(serie, hits, character):
+    for i in range(len(serie)):
+        if serie[i] == character:
+            hits[i] = True
+    print_gaps(serie, hits)
+    
+def game():
+    greetings()
+    serie = choose_serie()
+    word_hits = generate_word_hits(serie)
+    print_gaps(serie, word_hits)
+    while False in word_hits:
+        character = ask_character()
+        update_gaps(serie, word_hits, character)
+
+game()
