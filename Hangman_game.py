@@ -15,4 +15,15 @@ def ask_character():
         character = input("Only letters allowed: ")
     return character.upper()
 
-print(ask_character())
+def print_gaps(word):
+    gaps = ""
+    for i in word:
+        if i != " ":
+            gaps += "_ "
+        elif i == " ":
+            gaps += "   "
+    print(gaps)
+
+serie = choose_serie()
+print(serie)
+print_gaps(serie)
