@@ -7,3 +7,12 @@ def choose_serie():
 
 def greetings():
     print("Welcome to the Hangman game - Netflix Series version.")
+
+def ask_character():
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    character = input("Which character do you want to type?: ")
+    while character.upper() not in alphabet:
+        character = input("Only letters allowed: ")
+    return character.upper()
+
+print(ask_character())
