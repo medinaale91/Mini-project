@@ -35,13 +35,15 @@ def generate_word_hits(str):
             hits.append(False)
     return hits
 
-def update_gaps(serie, hits, character):
+def user_succeed(serie, hits, character):
+    succeed = False
     for i in range(len(serie)):
         if serie[i] == character:
             hits[i] = True
-    print_gaps(serie, hits)
+            succeed = True
+    return succeed
     
-def print_hangman(fails_count):
+def print_hangman(fails_count, fails_allowed):
     if fails_count == 1:
         print(
             '''
@@ -133,15 +135,21 @@ def print_hangman(fails_count):
             |
             '''
         )
+    print("You have made ", fails_count, " fails of an overall of ", fails_allowed)
 
 
 def game():
     greetings()
     serie = choose_serie()
+    max_fails_allowed = 7
+    fails_count = 0
     word_hits = generate_word_hits(serie)
-    print_gaps(serie, word_hits)
-    while False in word_hits:
+    while fails_count < max_fails_allowed and False in word_hits:
+        print_gaps(serie, word_hits)
         character = ask_character()
-        update_gaps(serie, word_hits, character)
+        if user_succeed(serie, word_hits, character) == False:
+            fails_count += 1
+            print_hangman(fails_count, max_fails_allowed)
+    print("The serie was ", serie)
 
-print_hangman(9)
+game()
