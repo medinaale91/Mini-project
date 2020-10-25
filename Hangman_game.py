@@ -5,5 +5,5 @@ def choose_serie():
     word = random.choice(netflix_series)
     return word
 
-print(choose_serie())
-
+def greetings():
+    print("Welcome to the Hangman game - Netflix Series version.")
